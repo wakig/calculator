@@ -29,10 +29,12 @@ const screen = document.querySelector('.screen');
 
 function press_operator(e) {
     if (first_ok && !operator_ok && !second_ok) {
-        first_number = parseFloat(screen_text);
+        first_number = parseFloat(screen.textContent);
         operator_text = e.currentTarget.textContent;
         operator_ok = true;
     }
+    else if (first_ok && operator_ok && second_ok)
+    console.log(first_number, second_number);
     clear_screen();
 }
 
@@ -41,9 +43,10 @@ function press_equals() {
         second_number = parseFloat(screen_text);
         if (operator_text === '+') add(first_number, second_number);
         else if (operator_text === '-') subtract(first_number, second_number);
-        else if (operator_text === '*') multiply(first_number, second_number);
+        else if (operator_text === 'x') multiply(first_number, second_number);
         else if (operator_text === '/') divide(first_number, second_number);
         operator_ok = false;
+        console.log(first_number, second_number);
     }
 }
 
@@ -69,13 +72,16 @@ function multiply(a, b) {
 }
 
 // division
-function divide() {
+function divide(a, b) {
     if (first_ok && second_ok) {
-        if (second_number == 0) {
-            console.log('Cannot divide by 0, sussy baka!');
+        if (b == 0) {
+            alert('Cannot divide by 0, sussy baka!');
         }
-        first_number /= second_number;
-        second_ok = false;
+        else {
+            first_number = a / b;
+            screen.textContent = first_number.toString();
+            second_ok = false;
+        }
     }
 }
 

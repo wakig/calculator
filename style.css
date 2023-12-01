@@ -8,6 +8,7 @@ body {
     justify-content: center;
     width: 450px;
     margin: 0 auto;
+    border-radius: 20px;
 }
 
 .screen {
@@ -16,6 +17,7 @@ body {
     color: white;
     text-align: right;
     font-size: 32px;
+    border-radius: 20px;
 }
 
 .buttons {
@@ -30,27 +32,20 @@ body {
 .row {
     flex: 1;
     display: flex;
-    justify-content: space-around;
-}
-
-.col {
-    flex: 1;
-    display: flex;
-    height: 400px;
-    min-height: 400px;
-    flex-direction: column;
+    flex-direction: row;
+    /* justify-content: space-around; */
 }
 
 .button {
     flex: 1;
     border-radius: 100px;
+    /* border-width: 10px; */
+    /* border-color: black; */
     border-style: none;
     font-size: 32px;
-    /* height: 400px;
-    min-height: 400px; */
-    /* outline: black 1px solid;
-    color: white;
-    background-color: white; */
+    padding: 0;
+    /* padding: 10px; */
+    margin: 10px;
 }
 
 .number {
@@ -77,4 +72,5 @@ body {
 
 .zero {
     flex: 2;
+    padding: 10px;
 }
