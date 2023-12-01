@@ -41,8 +41,12 @@ function press_operator(e) {
         operator_text = e.currentTarget.textContent;
         operator_ok = true;
     }
-    else if (first_ok && operator_ok && second_ok)
-    console.log(first_number, second_number);
+    else if (first_ok && operator_ok && second_ok) {
+        press_equals();
+        operator_text = e.currentTarget.textContent;
+        operator_ok = true;
+    }
+    // console.log(first_number, second_number);
     screen.textContent = '';
 }
 
