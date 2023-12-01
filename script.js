@@ -6,7 +6,6 @@ let operator_ok = false;
 let first_number = 0;
 let second_number = 0;
 
-let screen_text = '';
 let operator_text = '';
 
 const numbers = document.querySelectorAll('.number');
@@ -25,6 +24,15 @@ equals.addEventListener('click', press_equals);
 const dot = document.querySelector('.dot');
 dot.addEventListener('click', press_decimal);
 
+const ac = document.querySelector('.ac');
+ac.addEventListener('click', reset);
+
+const plusminus = document.querySelector('.plusminus');
+plusminus.addEventListener('click', invert_sign);
+
+const percent = document.querySelector('.percent');
+percent.addEventListener('click', press_percent);
+
 const screen = document.querySelector('.screen');
 
 function press_operator(e) {
@@ -35,12 +43,12 @@ function press_operator(e) {
     }
     else if (first_ok && operator_ok && second_ok)
     console.log(first_number, second_number);
-    clear_screen();
+    screen.textContent = '';
 }
 
 function press_equals() {
     if (first_ok && second_ok) {
-        second_number = parseFloat(screen_text);
+        second_number = parseFloat(screen.textContent);
         if (operator_text === '+') add(first_number, second_number);
         else if (operator_text === '-') subtract(first_number, second_number);
         else if (operator_text === 'x') multiply(first_number, second_number);
@@ -75,6 +83,7 @@ function multiply(a, b) {
 function divide(a, b) {
     if (first_ok && second_ok) {
         if (b == 0) {
+            reset();
             alert('Cannot divide by 0, sussy baka!');
         }
         else {
@@ -87,8 +96,7 @@ function divide(a, b) {
 
 // press number
 function press_number(e) {
-    screen_text += e.currentTarget.textContent;
-    update_screen();
+    screen.textContent += e.currentTarget.textContent;
     if (!operator_ok) first_ok = true;
     else second_ok = true;
 }
@@ -97,23 +105,29 @@ function press_number(e) {
 function press_decimal(e) {
     if (!decimal_ok) {
         decimal_ok = true;
-        screen_text += e.currentTarget.textContent;
-        update_screen();
+        screen.textContent += e.currentTarget.textContent;
     }
     if (!operator_ok) first_ok = true;
     else second_ok = true;
 }
 
-// update screen text
-function update_screen() {
-    screen.textContent = screen_text;
-}
-
-function clear_screen() {
+function reset() {
+    first_ok = false;
+    second_ok = false;
+    decimal_ok = false;
+    operator_ok = false;
+    first_number = 0;
+    second_number = 0;
+    operator_text = '';
     screen.textContent = '';
-    screen_text = '';
 }
 
-// convert string to float
-// first_number = parseFloat(first_str);
-// second_number = parseFloat(second_str);
+function invert_sign() {
+    let temp = -parseFloat(screen.textContent);
+    screen.textContent = temp.toString();
+}
+
+function press_percent() {
+    let temp = parseFloat(screen.textContent) / 100.0;
+    screen.textContent = temp.toString();
+}
