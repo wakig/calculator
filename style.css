@@ -30,6 +30,7 @@ body {
     height: 500px;
     min-height: 500px;
     margin: 0 auto;
+    padding-bottom: 10px;
 }
 
 .row {
@@ -73,7 +74,11 @@ body {
     color: white;
 }
 
-.zero {
+.backspace {
+    color: white;
+}
+
+/* .zero {
     flex: 2;
     padding: 10px;
-}
+} */
