@@ -1,6 +1,5 @@
 let first_ok = false;
 let second_ok = false;
-let decimal_ok = false;
 let operator_ok = false;
 let reset_display = false;
 const ROUND = 100000000;
@@ -130,11 +129,7 @@ function press_number(e) {
 
 // press decimal
 function press_decimal(e) {
-    if (!decimal_ok) {
-        decimal_ok = true;
-        if (e instanceof KeyboardEvent) screen.textContent += e.key;
-        else screen.textContent += e.currentTarget.textContent;
-    }
+    if (!screen.textContent.includes('.')) screen.textContent += '.';
     if (!operator_ok) first_ok = true;
     else second_ok = true;
 }
@@ -142,7 +137,6 @@ function press_decimal(e) {
 function reset() {
     first_ok = false;
     second_ok = false;
-    decimal_ok = false;
     operator_ok = false;
     first_number = 0;
     second_number = 0;
@@ -177,7 +171,7 @@ function key_press(e) {
     else if (key_name === '.') {
         press_decimal(e);
     }
-    else if (key_name === '=') {
+    else if (key_name === '=' || key_name === 'Enter') {
         press_equals();
     }
     else if (key_name === 'Escape') {
