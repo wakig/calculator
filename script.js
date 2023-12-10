@@ -180,4 +180,7 @@ function key_press(e) {
     else if (key_name === 'Backspace') {
         press_backspace();
     }
+    else if (key_name === '%') {
+        press_percent();
+    }
 }
